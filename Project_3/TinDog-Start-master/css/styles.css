@@ -1,0 +1,13 @@
+h1 {
+  font-style: "Montserrat-Black";
+  font-size: 3rem;
+  line-height: 1.5;
+}
+
+.navbar-brand {
+  font-family: 'Splash', cursive;
+}
+
+#title {
+  background-color: #ff4c68;
+}

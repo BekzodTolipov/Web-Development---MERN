@@ -1,13 +1,21 @@
 body {
   margin: 0;
   text-align: center;
-  font-family: Merriweather, monospace;
-  font-size: 18px;
+  font-family: 'Merriweather', serif;
 }
 
 h1 {
-  width: 10%;
-  margin: 0 auto;
+  margin: 2.6rem auto 0 auto;
+  font-size:5.625rem;
+  color: #66BFBF;
+  line-height: 1;
+}
+
+h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.5rem;
+  color: #66BFBF;
+  font-weight: normal;
 }
 
 .intro-section {
@@ -33,7 +41,7 @@ h1 {
   width: 300px;
   position: absolute;
   right: 150px;
-  top: 150px
+  top: 250px;
 }
 
 .middle-container {
@@ -48,5 +56,21 @@ h1 {
 
 .skills-picture {
   height: 100px;
-  width: 100px;
+  width: 25%;
+  float: left;
+  margin-right: 2rem;
+}
+
+.skill-row {
+  width: 50%;
+  margin: 100px auto;
+  text-align: left;
+  line-height: 2;
+}
+
+hr {
+  border: dotted #EAF6F6 6px;
+  border-bottom: none;
+  width: 4%;
+  margin: 100px auto;
 }
