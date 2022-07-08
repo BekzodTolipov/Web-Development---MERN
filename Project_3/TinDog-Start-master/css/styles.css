@@ -21,12 +21,24 @@ h3 {
 }
 
 .container-fluid {
-  padding: 3% 10%;
+  padding: 3% 10% 7%;
+}
+
+
+
+
+/* Titles */
+#title {
+  background-color: #ff4c68;
+  color: white;
+
 }
 
 .iphone {
   transform: rotate(25deg);
-  width: 60%;
+  width: 20%;
+  position: absolute;
+  right: 20%;
 }
 
 .icons {
@@ -39,18 +51,15 @@ h3 {
   color: #ff4c68;
 }
 
-.features-content {
-  padding: 20px 0;
-}
-
-#title {
-  background-color: #ff4c68;
-  color: white;
-}
-
+/* Features */
 #features {
-  padding: 5% 0;
+  background-color: #fff;
   text-align: center;
+  position: relative;
+}
+
+.features-content {
+  padding: 4.5%;
 }
 
 /* navigation Bar */
