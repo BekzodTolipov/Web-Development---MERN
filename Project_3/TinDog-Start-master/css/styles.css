@@ -1,44 +1,43 @@
 body{
   font-family: "Montserrat";
+  text-align: center;
 }
 
-h1 {
-  font-style: "Montserrat-Black";
-  font-size: 3.5rem;
-  line-height: 1.5;
-}
-
-h2 {
-  font-family: "Montseratt-Bold";
-  font-size: 3rem;
-  line-height: 1.5;
+h1, h2, h3, h4, h5, h6 {
+  font-style: "Montserrat-Bold";
 }
 
 h3 {
-  font-style: "Montserrat";
   font-size: 1.5rem;
   font-weight: bold;
 }
 
 .container-fluid {
-  padding: 3% 10% 7%;
+  padding: 3% 17%;
 }
-
-
 
 
 /* Titles */
 #title {
   background-color: #ff4c68;
   color: white;
+}
 
+#title .container-fluid {
+  padding: 3% 15% 7%
 }
 
 .iphone {
   transform: rotate(25deg);
   width: 20%;
   position: absolute;
-  right: 20%;
+  right: 10%;
+}
+
+.big-heading {
+  font-style: "Montserrat-Black";
+  font-size: 3.5rem;
+  line-height: 1.5;
 }
 
 .icons {
@@ -54,7 +53,6 @@ h3 {
 /* Features */
 #features {
   background-color: #fff;
-  text-align: center;
   position: relative;
 }
 
@@ -65,6 +63,10 @@ h3 {
 /* navigation Bar */
 .navbar {
   padding: 0 0 4.5rem;
+}
+
+.navbar-toggler {
+  color: #fff;
 }
 
 .navbar-brand {
@@ -90,7 +92,6 @@ h3 {
 
 /* Testimonial Section */
 #testimonials {
-  text-align: center;
   background-color: #ef8172;
   color: #fff;
 }
@@ -108,8 +109,9 @@ h3 {
 /* Press */
 #press {
   background-color: #ef8172;
-  text-align: center;
   padding-bottom: 3%;
+  padding-top: 2%;
+  margin-top: -5px;
 }
 
 .press-logo {
@@ -120,9 +122,77 @@ h3 {
 /* Pricing */
 #pricing {
   padding: 100px;
-  text-align: center;
+}
+
+.section-heading {
+  font-size: 3rem;
+  line-height: 1.5;
+}
+
+.price-text {
+  font-size: 3rem;
+  line-height: 1.5;
 }
 
 .pricing-column  {
   padding: 3% 2%;
+}
+
+#cta {
+  background-color: #ff4c68;
+  color: #fff;
+  font-family: "Montserrat-Black";
+  padding: 5%;
+}
+
+#footer {
+  background-color: #fff;
+  padding-top: 3rem;
+}
+
+.social-media-icons {
+  margin-left: 1rem;
+  font-size: 2.5rem;
+}
+
+.fa-twitter-square {
+  color: #1B9CE9;
+}
+
+.fa-facebook-square {
+  color: #38529A;
+}
+
+.fa-instagram-square {
+  color: #A73A7E;
+}
+
+@media (max-width: 1180px) {
+  .iphone {
+    transform: rotate(25deg);
+    width: 30%;
+    position: absolute;
+    right: 10%;
+  }
+}
+
+@media (max-width: 990px) {
+  #title{
+    text-align: center;
+  }
+
+  .iphone {
+    position: static;
+    transform: rotate(0deg);
+    width: 30%;
+    right: 20%;
+  }
+
+  .navbar-nav {
+    text-align: right;
+  }
+}
+
+.nav-item:hover {
+  text-decoration: underline;
 }
