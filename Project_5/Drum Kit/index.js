@@ -4,10 +4,12 @@ var drumsList = document.querySelectorAll(".drum");
 
 drumsList.forEach(drum => drum.addEventListener('click', function() {
   findAudio(drum.className.charAt(0));
+  buttonAnimation(drum.className.charAt(0));
 }));
 
 document.addEventListener('keydown', (event)=>{
   findAudio(event.key);
+  buttonAnimation(event.key);
 })
 
 
@@ -42,4 +44,12 @@ function findAudio(key) {
       lSound.play();
       break;
   } 
+}
+
+function buttonAnimation(btnKey) {
+  var activeButton = document.querySelector('.' + btnKey);
+  activeButton.classList.add("pressed");
+  setTimeout(function() {
+    activeButton.classList.remove("pressed");
+  }, 100)
 }
