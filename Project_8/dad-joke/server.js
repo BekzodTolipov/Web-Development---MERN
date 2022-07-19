@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
@@ -7,7 +8,7 @@ const options = {
   method: 'GET',
   url: 'https://dad-jokes.p.rapidapi.com/random/joke',
   headers: {
-    'X-RapidAPI-Key': '8bebbb52f6mshadf910533e95a19p1018c9jsnffff64a78552',
+    'X-RapidAPI-Key': process.env.API_KEY,
     'X-RapidAPI-Host': 'dad-jokes.p.rapidapi.com'
   }
 };
