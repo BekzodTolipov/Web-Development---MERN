@@ -1,13 +1,17 @@
+require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const ejs = require('ejs');
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
+
+const saltRounds = process.env.SALT_ROUNDS;
 
 
 // Database connection
@@ -31,15 +35,28 @@ app.get('/register', (req, res) => {
 });
 
 app.post('/register', async (req, res) => {
-    const newUser = new UserModel({
-        email: req.body.username,
-        password: req.body.password
-    });
+    const encryptedPassword = bcrypt.hashSync(req.body.password, Number(saltRounds));
+    
 
     try {
-        await newUser.save();
+        const user = await UserModel.findOne({
+            email: req.body.username,
+        });
 
-        res.render('login');
+
+        if(user) {
+            res.redirect('login');
+        } else {
+            const newUser = new UserModel({
+                email: req.body.username,
+                password: encryptedPassword
+            });
+    
+            await newUser.save();
+
+            res.render('login');
+
+        }
     } catch (error) {
         res.status(400).end();
     }
@@ -53,11 +70,17 @@ app.post('/login', async (req, res) => {
     try {
         const user = await UserModel.findOne({
             email: req.body.username,
-            password: req.body.password
         });
 
+
         if(user) {
-            res.render('secrets');
+            const cmp = bcrypt.compareSync(req.body.password, user.password);
+
+            if(cmp) {
+                res.render('secrets');
+            } else {
+                res.redirect('login');
+            }
         } else {
             res.redirect('login');
         }
@@ -73,6 +96,10 @@ app.get('/secrets', (req, res) => {
 
 app.get('/submit', (req, res) => {
     res.render('submit');
+});
+
+app.get('/logout', (req, res) => {
+    res.redirect('/');
 });
 
 
