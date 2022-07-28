@@ -35,7 +35,8 @@ mongoose.connect('mongodb://localhost:27017/userDB');
 const userSchema = new mongoose.Schema({
     email: String,
     password: String,
-     googleId: String
+    googleId: String,
+    secret: String
 });
 
 userSchema.plugin(passportLocalMongoose);
@@ -113,7 +114,7 @@ app.post('/login', async (req, res) => {
 
     req.login(user, (err) => {
         if(err) {
-            console.log(err);
+            res.redirect('/register');
         } else {
             passport.authenticate('local')(req, res, () => {
                 res.redirect('/secrets');
@@ -125,14 +126,46 @@ app.post('/login', async (req, res) => {
 
 app.get('/secrets', (req, res) => {
     if(req.isAuthenticated()) {
-        res.render('secrets');
+        const userId = req.user.id;
+
+        UserModel.findOne({id: userId}, (err, foundUser) => {
+            if(err) {
+                console.log(err);
+            } else {
+                if(foundUser) {
+                    res.render('secrets', { secret: foundUser.secret });
+                }
+            }
+        });
     } else {
         res.redirect('/login');
     }
 });
 
 app.get('/submit', (req, res) => {
-    res.render('submit');
+    if(req.isAuthenticated()) {
+        res.render('submit');
+    } else {
+        res.redirect('/login');
+    }
+});
+
+app.post('/submit', (req, res) => {
+    const submittedSecret = req.body.secret;
+    const userId = req.user.id;
+
+    UserModel.findOne({id: userId}, (err, foundUser) => {
+        if(err) {
+            console.log(err);
+        } else {
+            if(foundUser) {
+                foundUser.secret = submittedSecret;
+                foundUser.save(() => {
+                    res.redirect('/secrets');
+                });
+            }
+        }
+    })
 });
 
 app.get('/logout', (req, res) => {
